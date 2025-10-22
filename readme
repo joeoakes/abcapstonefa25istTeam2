@@ -18,7 +18,18 @@ quantum_project/
 │       ├── classical_factor.py    # Implements a step-by-step factorization algorithm
 │
 ├── pyproject.toml
-├── poetry.lock
 └── README.md
+
+Install Required Libraries
+pip install cirq cirq-web matplotlib sympy ipywidgets
+
+
+****In Google Colab, these commands are already included at the top of the notebook, so no setup is required.****
+
+
+
+Clone the Repository
+git clone https://github.com/yourusername/quantum_project.git
+cd quantum_project
 
 
