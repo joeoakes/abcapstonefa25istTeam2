@@ -79,7 +79,7 @@ mycircuit.append(cirq.measure(*myqubits, key='m'))
 # print the circuit
 print(mycircuit)
 
-# simulating
+# simulating the noise
 sim = cirq.Simulator()
 result = sim.run(mycircuit, repetitions=1000)
 print(result)
@@ -127,6 +127,10 @@ print("Simulation result:")
 print(result)
 
 print(f"Time taken for simulation: {end_time - start_time:.4f} seconds")
+
+
+
+
 
 # step by step facotring
 import cirq
