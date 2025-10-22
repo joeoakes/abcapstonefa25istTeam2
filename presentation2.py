@@ -32,6 +32,8 @@ print(mycircuit)
 !pip install cirq-web
 
 # importing the needed libraries
+
+#Creating the 3D circuit
 import cirq
 from cirq_web.circuits import Circuit3D
 
