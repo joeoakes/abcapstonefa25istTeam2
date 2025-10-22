@@ -29,7 +29,7 @@ pip install cirq cirq-web matplotlib sympy ipywidgets
 
 
 Clone the Repository
-git clone https://github.com/yourusername/quantum_project.git
+git clone https://github.com/joeoakes/abcapstonefa25istTeam2.git
 cd quantum_project
 
 
