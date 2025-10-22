@@ -7,11 +7,11 @@ Our goal is to use the simulated Quantum X computer available to us to try and "
 quantum_project/
 │
 ├── quantum_project/
-│   ├── __init__.py                # Unified initialization logic
+│   ├── __init__.py                
 │   ├── circuits/
 │   │   ├── __init__.py
-│   │   ├── h_gate_simulation.py   # Builds and simulates 6-qubit H-gate circuit
-│   │   ├── noise_model.py         # Adds bit-flip noise to qubits
+│   │   ├── h_gate_simulation.py   # Builds and simulates a 3D  6-qubit H-gate circuit (Hadamard)
+│   │   ├── noise_model.py         # Adds bit flip noise to qubits
 │   │   ├── benchmarking.py        # Measures circuit performance over time
 │   └── factoring/
 │       ├── __init__.py
@@ -20,3 +20,5 @@ quantum_project/
 ├── pyproject.toml
 ├── poetry.lock
 └── README.md
+
+
