@@ -7,8 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/16WBuf0VZcNSFVQwHbDrbJTjCAjv7YqFp
 """
 # Cirq installation to simulate & run quantum circuits.
+#installing the cirq package quietly. It means it's doing it w/o extra logs
 !pip install --quiet cirq
 
+#importing cirq libraries
 import cirq
 
 # Creates 6 qubits, simulates 1s, 0s, or both simultaneously.
@@ -44,6 +46,7 @@ mycircuit = cirq.Circuit ()
 
 # We're using a "for loop" to avoid tedious lines.
 # Qubit defined as q.
+
 for q in myqubits:
     mycircuit.append(cirq.H(q))
 
