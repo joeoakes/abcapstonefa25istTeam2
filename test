@@ -1,4 +1,8 @@
 #test file
 cool
 Hello
+<<<<<<< HEAD
+Amazing
+=======
 Christine Was here
+>>>>>>> 2aa332c864500d35d0371e87f295f98baa4813d8
