@@ -1,4 +1,4 @@
-from qiskit import QuantumCircuit, transpile
+from qiskit import QuantumCircuit, transpile #neccessary mods for Qiskit to operate!
 from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import matplotlib.pyplot as plt
