@@ -9,14 +9,15 @@ from PIL import Image
 headless = not os.environ.get("DISPLAY")
 
 # This is creating the ciruit
-circ = QuantumCircuit(2)
-circ.h(0)
-circ.cx(0, 1)
+circ = QuantumCircuit(2) #this is creating a 2 q-bit circuit
+circ.h(0) #H-gate is applied to the first circuit
+circ.cx(0, 1) #This is where the CNOT gate is being applied.
+#applying both the CNOT and H-gate will star to initilize the cirucit --> creating the Bell state.
 circ.measure_all()
 
-# Transpile for simulator
+# Transpile for simulator for faster exeecution
 simulator = AerSimulator()
-circ = transpile(circ, simulator)
+circ = transpile(circ, simulator) #the circuit is on the simulator and the measurement counts are retireved.
 
 # Run and get counts
 result = simulator.run(circ).result()
