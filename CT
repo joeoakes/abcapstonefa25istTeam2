@@ -26,12 +26,13 @@ counts = result.get_counts(circ)
 print("Measurement Counts:", counts)
 
 # Save circuit diagram
-circuit_plot = circ.draw('mpl')
-circuit_plot.savefig("circuit.png")
+circuit_plot = circ.draw('mpl') #the diagram is being generated with the 'mpl' function.
+#mpl is the matplotlib backened :))
+circuit_plot.savefig("circuit.png") 
 print("Circuit diagram saved as circuit.png")
 
 # Save histogram
-hist_plot = plot_histogram(counts, title='Bell-State counts')
+hist_plot = plot_histogram(counts, title='Bell-State counts') #the measurement of the counts are being set up to be displayed as the histogram
 hist_plot.savefig("histogram.png")
 print("Histogram saved as histogram.png")
 
@@ -42,15 +43,15 @@ def ascii_preview(image_path, width=80):
     img = img.resize((width, int(width * img.height / img.width / 2)))
     chars = "@%#*+=-:. "
     pixels = img.getdata()
-    ascii_str = "".join(chars[min(pixel // 25, len(chars) - 1)] for pixel in pixels)
+    ascii_str = "".join(chars[min(pixel // 25, len(chars) - 1)] for pixel in pixels) #'join' is being used to process every pixel that'll go towrds the final ASCII pic
     for i in range(0, len(ascii_str), width):
         print(ascii_str[i:i+width])
 
 
 
-# Show ASCII previews
+# Show ASCII previews is mainly used to convert a png into an ASCII art (I needed to do this in prder for it to print in the console).
 print("\nCircuit Preview:")
-ascii_preview("circuit.png")
+ascii_preview("circuit.png") #this will output a low res pic of the circuit
 
 print("\nHistogram Preview:")
-ascii_preview("histogram.png")
+ascii_preview("histogram.png") #this will output a low res pic of the histogram
