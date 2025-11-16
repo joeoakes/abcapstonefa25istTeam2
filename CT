@@ -9,7 +9,7 @@ from PIL import Image
 # Detect headless mode
 headless = not os.environ.get("DISPLAY")
 
-# Create circuit
+# This is creating the ciruit
 circ = QuantumCircuit(2)
 circ.h(0)
 circ.cx(0, 1)
