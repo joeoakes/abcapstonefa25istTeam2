@@ -214,4 +214,16 @@ def decrypt_attack(N, e, retries=5):
     # Recompute the private exponent using the standard RSA formula.
     d_factored = modinv(e, phi_factored)
 
+    # Print and log N, p, q, and d so we can see the recovered key components.
+    print("[*] Shor attack recovered RSA key components:")
+    print(f"    N = {N}")
+    print(f"    p = {factored_p}")
+    print(f"    q = {factored_q}")
+    print(f"    d = {d_factored}")
+
+    logger.info(
+        "Shor attack recovered RSA key components for N=%s: p=%s, q=%s, d=%s",
+        N, factored_p, factored_q, d_factored,
+    )
+
     return factored_p, factored_q, d_factored
