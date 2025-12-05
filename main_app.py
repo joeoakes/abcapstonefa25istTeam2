@@ -2,7 +2,7 @@
 # Purpose Details: Command-line app that generates RSA keys, encrypts a message, and then attempts
 #                  to recover the private key using a Shor-style quantum factoring attack.
 # Course: IST 440W / IST Capstone
-# Author: Thomas Koltes (update team info as needed)
+# Author: Thomas Koltes, Sierra Matthews, Christine Kwarteng, Brian Myers, George Sun
 # Date Developed: 10/13/25
 # Last Date Changed: 12/4/25
 # Revision: 1.5
