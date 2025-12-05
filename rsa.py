@@ -15,41 +15,30 @@ def modinv(a, m):
     """
     Finds the modular inverse of a under modulus m.
 
-    In RSA, we need to compute a number d such that:
+    The goal is to find a number d such that:
         a * d ≡ 1 (mod m)
 
-    In practice, this means "find a number d that, when multiplied by a,
-    leaves a remainder of 1 when divided by m."
-
-    This is required because the private key exponent d is defined as
-    the modular inverse of e under φ(n).
-
-    Here, we use a very simple brute-force approach because the RSA numbers
-    in this educational project are intentionally small.
+    This is important in RSA because the private key exponent d must be the modular
+    inverse of the public exponent e relative to phi(n). This version uses a simple
+    brute force loop because the numbers used in this project are intentionally small.
     """
     for d in range(2, m):
         # Check whether this value of d satisfies the modular inverse equation
         if (a * d) % m == 1:
             return d
 
-    # If no inverse exists (rare with valid RSA parameters), return None.
+    # If no modular inverse is found, return None
     return None
 
 
 def is_prime(n: int) -> bool:
     """
-    Checks whether a number is prime.
+    Returns True if n is a prime number.
 
-    Because our project uses very small primes (10–50 range),
-    a simple method is sufficient. For larger RSA keys, a much more
-    sophisticated primality test would be required.
-
-    The logic:
-      - 0 and 1 are not prime
-      - Try dividing n by every integer from 2 up to sqrt(n)
-      - If none divide evenly, the number is prime
+    The function handles small prime checking by testing divisibility from 2 up to
+    the square root of n. If none of these values divide n evenly, the number is prime.
+    This approach is more than enough for the small integers used in this assignment.
     """
-
     if n < 2:
         return False
 
@@ -58,39 +47,37 @@ def is_prime(n: int) -> bool:
 
 def generate_rsa_key(primes_lower=10, primes_upper=50):
     """
-    Generates a small RSA key pair (n, e, d) for classroom and testing use.
+    Creates a small RSA key (n, e, d) suitable for educational demonstrations.
 
-    Steps performed:
-      1. Collect all prime numbers in the specified range.
-      2. Randomly pick two different primes p and q.
-      3. Compute the modulus n = p * q.
-      4. Compute Euler's totient φ(n) = (p − 1)(q − 1).
-      5. Choose a public exponent e that is coprime with φ(n).
-         We start at e = 3 and increase by 2 until gcd(e, φ(n)) = 1.
-      6. Compute the private exponent d as the modular inverse of e.
+    Main steps performed:
+      - Build a list of primes between the specified lower and upper bounds
+      - Randomly select p and q from that list
+      - Compute n which becomes the modulus for both the public and private keys
+      - Compute phi(n) which is used to choose e and compute d
+      - Choose e starting from 3 and move upward until it is coprime with phi(n)
+      - Compute d by finding the modular inverse of e
 
-    The result is a tiny RSA key—not secure—but excellent for demonstrating
-    the Shor factoring attack and unit-testing.
+    These RSA values are intentionally small so that the Shor attack script can factor n
+    and recover the private key during testing.
     """
 
-    # Build a list of primes in the allowed range
+    # List all primes within the specified range
     primes = [i for i in range(primes_lower, primes_upper) if is_prime(i)]
 
-    # Randomly pick p and q so long as they are not the same number
+    # Choose p and q as two different primes from the list
     p = random.choice(primes)
     q = random.choice([x for x in primes if x != p])
 
-    # Compute the RSA modulus n
+    # Compute the modulus n used for RSA encryption and decryption
     n = p * q
 
-    # Compute φ(n), needed for selecting e and computing d
+    # Compute Euler's totient value which determines valid choices for e
     phi_n = (p - 1) * (q - 1)
 
-    # We choose a small starting public exponent (traditional RSA uses 65537),
-    # but for educational keys we simply need it to be coprime with φ(n).
+    # Begin with a small odd exponent e and increase until it is coprime with phi(n)
     e = 3
     while gcd(e, phi_n) != 1:
-        e += 2  # stay with odd numbers, since even e cannot be coprime unless φ(n) is odd
+        e += 2
 
     # Compute the private exponent d
     d = modinv(e, phi_n)
@@ -100,26 +87,26 @@ def generate_rsa_key(primes_lower=10, primes_upper=50):
 
 def encrypt_message(message: str, n: int, e: int):
     """
-    Encrypts a string one character at a time using RSA.
+    Encrypts a string message one character at a time using RSA.
 
-    The logic:
-      - Convert each character to its Unicode code using ord(c)
-      - Raise it to the power of e modulo n (the RSA_encrypt step)
-      - Return the encrypted integers as a list
+    For each character:
+      - Convert it to an integer using ord(c)
+      - Perform RSA encryption using pow(value, e, n)
+      - Store the encrypted integer in the output list
 
-    This is not how real RSA encrypts full messages (real systems use padding),
-    but it works well for demonstrating RSA mechanics with small integers.
+    This simple approach is good for demonstration purposes because the focus is on
+    understanding how RSA transforms numeric values.
     """
     return [pow(ord(c), e, n) for c in message]
 
 
 def decrypt_message(cipher, n: int, d: int) -> str:
     """
-    Decrypts a list of RSA-encrypted integers back into a string.
+    Decrypts a list of RSA encrypted integers back into a readable string.
 
-    Each encrypted integer c is processed as:
-        plaintext_char = chr(pow(c, d, n))
-
-    The function rebuilds the original string by concatenating the characters.
+    For each encrypted integer:
+      - Apply RSA decryption using pow(c, d, n)
+      - Convert the resulting integer back into a character with chr()
+      - Append it to the output string
     """
     return ''.join(chr(pow(c, d, n)) for c in cipher)
