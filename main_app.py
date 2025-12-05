@@ -85,5 +85,24 @@ def run_app(message: str, retries: int = 5):
 
 if __name__ == "__main__":
     setup_logging()
-    run_app("Very good how are you today sir yes haha", retries=50)
 
+    # Ask user for message
+    user_message = input("Enter a message to encrypt and attack-decrypt: ")
+
+    # Ask for retries with validation
+    while True:
+        retries_input = input("Enter number of retries for Shor attack (default 50): ").strip()
+
+        # Use default if user presses ENTER
+        if retries_input == "":
+            retries = 50
+            break
+
+        # Validate numeric input
+        if retries_input.isdigit():
+            retries = int(retries_input)
+            break
+
+        print("Invalid input. Please enter a valid integer.")
+
+    run_app(user_message, retries=retries)
