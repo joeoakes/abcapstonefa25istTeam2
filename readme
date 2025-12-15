@@ -1,21 +1,15 @@
 IST 440W Capstone Team 2
 Group Members: Thomas Koltes, Christine Kwarteng, George Sun, Brian Myers, Sierra Matthews
-Our goal is to use the simulated Quantum X computer available to us to try and "break" RSA by factoring the largest integers possible using Shor's Algorithm primarily for factoring.
-
+Our goal is to simulate the most powerful quantum factoring approach to break the largest possible RSA keys given the constraints of a classical computer.
 
 
 quantum_project/
 │
-├── quantum_project/
-│   ├── __init__.py                
-│   ├── circuits/
-│   │   ├── __init__.py
-│   │   ├── h_gate_simulation.py   # Builds and simulates a 3D  6-qubit H-gate circuit (Hadamard)
-│   │   ├── noise_model.py         # Adds bit flip noise to qubits
-│   │   ├── benchmarking.py        # Measures circuit performance over time
-│   └── factoring/
-│       ├── __init__.py
-│       ├── classical_factor.py    # Implements a step-by-step factorization algorithm
+├── main_app.py
+├── rsa.py
+├── shor_attack.py
+├── shor_attack.log   # Generated during runtime
+└── requirements.txt
 │
 ├── pyproject.toml
 └── README.md
